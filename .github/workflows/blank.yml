@@ -1,0 +1,44 @@
+name: CI
+
+on: 
+  pull_request:
+    branches: [ main ]
+  
+  workflow_dispatch:
+  
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env: 
+      DBT_USER: {{ secrets.DBT_USER }}
+      DBT_PASSWORD: {{ secrets.DBT_PASSWORD }}
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install dbt
+        run: Pip install dbt-snowflake
+        
+      - name: Run dbt deps
+        run: dbt deps --profiles-dir .
+        
+      - name: Run dbt build
+        run: dbt build --profiles-dir .
+        
+      - name: Compile docs
+        run: dbt docs generate --profiles-dir . --target prod
+        
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: target
+        
