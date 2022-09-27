@@ -1,0 +1,7 @@
+target/
+logs/
+analyses/
+
+.DS_Store
+
+secrets.env
