@@ -1,4 +1,4 @@
-{% docs __overview__ %}
+<!-- {% docs __overview__ %}
 # Outserved Pipeline
 
 This is the pipeline documentation for Outserved (WIP)
@@ -15,4 +15,4 @@ The missing documentation is mentioned below and will be updated as soon as poss
 
 You can find the full dashboard at: [Outserved Dashboard](https://c322cb83.us2a.app.preset.io/superset/dashboard/p/2pnd3vMbgqD/)
 
-{% enddocs %}
+{% enddocs %} -->
